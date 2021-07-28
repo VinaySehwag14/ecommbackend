@@ -9,7 +9,6 @@ const productRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
 const paymentRoutes = require("./routes/payment");
 const cookieParser = require("cookie-parser");
-const path = require("path");
 const cors = require("cors");
 const app = express();
 app.use(express.json());
@@ -36,12 +35,6 @@ app.use("/kisaan", categoryRoutes);
 app.use("/kisaan", productRoutes);
 app.use("/kisaan", orderRoutes);
 app.use("/kisaan", paymentRoutes);
-
-app.use(express.static(path.join("public")));
-
-app.use((req, res, next) => {
-  res.sendFile(path.resolve(__dirname, "public", "index.html"));
-});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
