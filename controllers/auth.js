@@ -13,7 +13,11 @@ exports.signup = (req, res) => {
     });
   }
 
-  const user = new User(req.body);
+  const user = new User({
+    fname: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+  });
   user.save((err, user) => {
     if (err) {
       return res.status(400).json({
